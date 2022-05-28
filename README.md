@@ -1,3 +1,73 @@
+# Google & Facebook
+
+# npm install react-facebook-login
+
+# On Login page
+
+    const responseFacebook = (res) => {
+        // send token to api
+    	console.log(res)
+    };
+
+    <FacebookLogin
+        appId='723618784796179'
+        fields='name,email,picture'
+        callback={responseFacebook}
+        cssClass='my-facebook-button-class'
+        icon={<AppIcon icon={'facebook-squared'} className={'text-3xl'} />}
+    />
+
+# npm install react-google-login
+
+# Create React Component
+
+    import React from 'react';
+
+    const Google = ({ onClick, disabled, loading }) => {
+        const _onClick = (e) => {
+            if (!loading) {
+                onClick(e);
+            }
+        };
+
+        return (
+            <button
+                className={'flex items-center justify-center w-full bg-white border-2 border-gray-300 p-4'}
+                onClick={_onClick}
+                disabled={loading || disabled}
+            >
+                Continue with Google
+            </button>
+        );
+    };
+
+    export default Google;
+
+# On Login page
+
+    import { GoogleLogin } from 'react-google-login';
+    import { GoogleButton } from '../../components/Auth';
+
+    const responseGoogle = ({ tokenId }) => {
+        // send token to api
+    	console.log(tokenId)
+    };
+
+    <GoogleLogin
+        clientId='727175353764-72nbvqv049dc0tslf2rsatga65u6url8.apps.googleusercontent.com' <- should be replaced with new client id key
+        buttonText='Login'
+        onSuccess={responseGoogle}
+        onFailure={responseGoogle}
+        cookiePolicy={'single_host_origin'}
+        render={(renderProps) => (
+            <GoogleButton
+                loading={loadingGoogle}
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+            />
+        )}
+    />
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
